@@ -8,7 +8,7 @@ print("Welcome lets start the game, you have to be choose correct word until you
 
 while True:
     print("Category avilable(fruits, sports, animal, language)")
-    choice = input("Choose a category from the list.: ").lower()
+    choice = input("Choose a category from the list : ").lower()
     if choice == 'fruits':
         curli = fruits
     elif choice == 'sports':
@@ -29,7 +29,7 @@ while True:
         cou+=1
         print("word start with: ",rwo[0:1])
 
-        inp = input("Print correct word: ").lower()
+        inp = input("Enter correct word: ").lower()
     print("Its true total attemps:",cou+1)
     lai = input("Want to exist or resume the game(resume/exit)")
     if(lai == 'resume'):
