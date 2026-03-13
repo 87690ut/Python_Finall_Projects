@@ -36,7 +36,7 @@ The goal was to transform raw, noisy daily sales data into actionable business i
 ## 📊 Visualizing the Future
 *(Note: The graph below demonstrates the final Holt's Model forecast, showing the transition from historical data to future trend prediction.)*
 
-![Holt Model Forecast](graph.png)
+![Holt Model Forecast](Forecasting.png)
 
 ## 💡 Key Business Takeaway
 A "Flat Line" average forecast is dangerous for a growing business. By implementing Holt's Exponential Smoothing with Trend, we ensure that our inventory and budgeting align with the actual momentum of the market, not just past averages.
