@@ -24,6 +24,9 @@ This repository documents the end-to-end development of Machine Learning pipelin
 * **Core Concept:** Solving the overfitting issue of a single Decision Tree by deploying an ensemble of multiple trees (a "Forest") and utilizing majority voting to make robust predictions.
 * **Model Evaluation:** Moved beyond basic accuracy. Evaluated model performance using the **Confusion Matrix** and **Classification Report** to analyze Precision, Recall, and F1-Score, especially for imbalanced business data.
 * **Business Intelligence (Actionable Insights):** Extracted `feature_importances_` to determine which variables (e.g., Discount vs. Age) drive customer decisions the most, converting raw ML metrics into strategic business insights through data visualization (Bar Charts/Heatmaps).
+### Advanced Concept: Hyperparameter Tuning (Model Optimization)
+* **Core Concept:** Implemented hyperparameter tuning by setting a `max_depth` constraint on the Random Forest ensemble.
+* **Business & Model Impact:** Validated the Data Science golden rule: *"Simpler is ALWAYS better."* By restricting the maximum depth of the trees, the model was prevented from deep-level overfitting (overthinking). The optimized 'Smart' model maintained the exact same high accuracy (95%) but resulted in a lighter, faster, and more generalized engine that is better equipped to handle unseen, real-world data without confusion.
 
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
