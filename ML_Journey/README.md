@@ -73,6 +73,21 @@ The goal of this session was to handle a "Messy Dataset" (Real-world scenario) a
 **Status:** Completed & Validated.
 
 
+ ### ⚠️ Technical Update: Preventing Data Leakage
+
+**The Problem:**
+Initially, the entire feature set ($X$) was scaled *before* splitting. This caused **Data Leakage**, meaning the model gained insights into the distribution (Min/Max range) of the test data during the training phase. This results in overly optimistic but "dishonest" accuracy.
+
+**The Fix (Pro-Level Pipeline):**
+To ensure industry standards, the following sequence was implemented:
+1. **Train-Test Split:** Separated raw data into training and testing sets *first*.
+2. **Scaling Logic:** - **`fit_transform(X_train)`**: The scaler learns the Min/Max parameters strictly from the training data.
+   - **`transform(X_test)`**: The scaler applies the *training parameters* to the test data without re-learning, keeping the test set completely unseen.
+
+**Impact:**
+The pipeline is now robust and leakage-free, ensuring the model's performance is evaluated against truly "new" data, just like in a real-world production environment.
+
+
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
 * **Model Building:** `scikit-learn` pipeline implementation.
