@@ -41,6 +41,37 @@ This repository documents the end-to-end development of Machine Learning pipelin
   * *Business Logic:* This eliminates magnitude bias, ensuring the model doesn't falsely prioritize large numbers (e.g., Bill Amount) over smaller but equally important numbers (e.g., Gender encoding). 
   * *Note:* Crucial for distance-based models (Logistic/Linear), but optional for tree-based models (Decision Tree/Random Forest).
 
+# Day 5 - Part 2: End-to-End Data Preprocessing & Model Training
+
+## Project Objective
+The goal of this session was to handle a "Messy Dataset" (Real-world scenario) and transform it into a machine-ready format for training a Logistic Regression model.
+
+## 1. Data Cleaning & Preprocessing
+- **Missing Value Imputation:**
+    - Handled missing numerical values in the `Age` column using the **Mean**.
+    - Handled missing categorical values in `Samosa_Type` using the **Mode**.
+- **Categorical Encoding:**
+    - Converted text labels (`Male/Female`, `Aloo/Paneer`) into binary numerical format (0 and 1) using the `replace()` function.
+- **Feature Scaling:**
+    - Applied `MinMaxScaler` to normalize features between 0 and 1 to prevent magnitude bias in the model.
+
+## 2. Challenges & Debugging (The Learning Curve)
+
+| Issue | Root Cause | Solution |
+| :--- | :--- | :--- |
+| **ValueError: Unknown label type: continuous** | Attempted to scale the target variable `y`, which converted integers to floats (e.g., 0.0, 1.0). | **Golden Rule:** Only scale Features (X). Keep the Target (y) as a strict integer. |
+| **UndefinedMetricWarning** | Extremely small dataset (6 rows) led to zero predictions for Class 1. | Acknowledged as a data size limitation. Needs a larger dataset for better patterns. |
+| **Memory/Variable Clash** | Conflict between variables from previous notebook cells. | Restarted the Jupyter Kernel and ensured unique variable names. |
+| **Dtype Mismatch** | Model failed to recognize `0/1` as numbers. | Explicitly converted the target variable using `.astype(int)`. |
+
+## 3. Final Model Evaluation
+- **Algorithm:** Logistic Regression
+- **Test Set Accuracy:** **50%**
+- **Observation:** Given the small test size (2 samples), the accuracy reflects the data constraint rather than a model failure. The pipeline itself is now 100% robust and error-free.
+
+---
+**Status:** Completed & Validated.
+
 
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
