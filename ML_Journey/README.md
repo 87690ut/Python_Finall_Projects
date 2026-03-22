@@ -34,6 +34,14 @@ This repository documents the end-to-end development of Machine Learning pipelin
   - Maintained a high **Precision of 0.93**, meaning minimal resource wastage (Low False Positives).
   - Learned that evaluating '0' and '1' classes separately allows for strategic business decisions depending on whether the company wants to minimize inventory loss (focus on Precision) or maximize customer reach (focus on Recall).
 
+  ### Advanced Data Preprocessing (Cleaning the Messy Data)
+* **Handling Missing Values (NaN):** Replaced missing numerical data (Age) with the `mean()` and categorical data (Samosa_Type) with the `mode()` to prevent model crashes.
+* **Categorical Encoding:** Converted text-based categories ('Male'/'Female', 'Aloo'/'Paneer') into machine-readable numerical formats (0, 1) using the `replace()` function.
+* **Feature Scaling:** Applied `MinMaxScaler` to normalize all features between 0 and 1. 
+  * *Business Logic:* This eliminates magnitude bias, ensuring the model doesn't falsely prioritize large numbers (e.g., Bill Amount) over smaller but equally important numbers (e.g., Gender encoding). 
+  * *Note:* Crucial for distance-based models (Logistic/Linear), but optional for tree-based models (Decision Tree/Random Forest).
+
+
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
 * **Model Building:** `scikit-learn` pipeline implementation.
