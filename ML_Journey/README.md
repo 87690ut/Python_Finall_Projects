@@ -28,6 +28,12 @@ This repository documents the end-to-end development of Machine Learning pipelin
 * **Core Concept:** Implemented hyperparameter tuning by setting a `max_depth` constraint on the Random Forest ensemble.
 * **Business & Model Impact:** Validated the Data Science golden rule: *"Simpler is ALWAYS better."* By restricting the maximum depth of the trees, the model was prevented from deep-level overfitting (overthinking). The optimized 'Smart' model maintained the exact same high accuracy (95%) but resulted in a lighter, faster, and more generalized engine that is better equipped to handle unseen, real-world data without confusion.
 
+### Day 5: Advanced Model Evaluation & Error Analysis
+* **Core Concept:** Evaluated the Random Forest model beyond simple Accuracy using `confusion_matrix` and `classification_report`.
+* **Business Insights (Precision vs. Recall):** - Achieved a **Recall of 1.00 (100%)** for Class 1 (Target Customers), ensuring zero missed opportunities (No False Negatives). 
+  - Maintained a high **Precision of 0.93**, meaning minimal resource wastage (Low False Positives).
+  - Learned that evaluating '0' and '1' classes separately allows for strategic business decisions depending on whether the company wants to minimize inventory loss (focus on Precision) or maximize customer reach (focus on Recall).
+
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
 * **Model Building:** `scikit-learn` pipeline implementation.
