@@ -87,6 +87,18 @@ To ensure industry standards, the following sequence was implemented:
 **Impact:**
 The pipeline is now robust and leakage-free, ensuring the model's performance is evaluated against truly "new" data, just like in a real-world production environment.
 
+## Day 6: Handling Big Data and Outliers
+
+### Project: Bank Loan Approval System
+Today's session focused on transitioning from toy datasets to a realistic 10,000-row bank dataset to understand how data volume impacts model performance.
+
+### Key Learnings & Execution:
+1. Data Volume Impact: Scaled the dataset to 10,000 records. Observed an immediate accuracy jump to 90.0% using Logistic Regression, proving that larger datasets help models identify reliable patterns and significantly improve Precision.
+2. Outlier Injection: Intentionally introduced extreme anomalous data (e.g., salaries of 50 Lakhs, 80 Lakhs, and negative values) to observe the "Garbage In, Garbage Out" (GIGO) effect and scale distortion.
+3. Visualizing Anomalies: Utilized Seaborn's `boxplot` to successfully detect the injected outliers that severely distorted the normal distribution.
+4. Data Cleaning (Trimming): Applied a logical filtering condition (`Salary > 0` and `Salary <= 200000`) to create a new, clean dataframe (`df_clean`) without modifying the original raw data, adhering to industry best practices.
+5. Pipeline Restoration: Passed the cleaned data through the standard Machine Learning pipeline (Train-Test Split -> MinMax Scaling -> Model Fitting -> Prediction). The model's stability and 90% accuracy were successfully restored, proving the effectiveness of the outlier removal step.
+
 
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
