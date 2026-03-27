@@ -87,18 +87,23 @@ To ensure industry standards, the following sequence was implemented:
 **Impact:**
 The pipeline is now robust and leakage-free, ensuring the model's performance is evaluated against truly "new" data, just like in a real-world production environment.
 
-# Day 6: Handling Big Data and Outliers
+# Day 6: Scaling Up, Handling Big Data & Outliers
 
 ### Project: Bank Loan Approval System
-Today's session focused on transitioning from toy datasets to a realistic 10,000-row bank dataset to understand how data volume impacts model performance.
+Today was a major step up! I moved from playing with tiny 6-row toy datasets to a realistic 10,000-row bank dataset. This session taught me why data volume and data cleaning are everything in Machine Learning.
 
-### Key Learnings & Execution:
-1. Data Volume Impact: Scaled the dataset to 10,000 records. Observed an immediate accuracy jump to 90.0% using Logistic Regression, proving that larger datasets help models identify reliable patterns and significantly improve Precision.
-2. Outlier Injection: Intentionally introduced extreme anomalous data (e.g., salaries of 50 Lakhs, 80 Lakhs, and negative values) to observe the "Garbage In, Garbage Out" (GIGO) effect and scale distortion.
-3. Visualizing Anomalies: Utilized Seaborn's `boxplot` to successfully detect the injected outliers that severely distorted the normal distribution.
-4. Data Cleaning (Trimming): Applied a logical filtering condition (`Salary > 0` and `Salary <= 200000`) to create a new, clean dataframe (`df_clean`) without modifying the original raw data, adhering to industry best practices.
-5. Pipeline Restoration: Passed the cleaned data through the standard Machine Learning pipeline (Train-Test Split -> MinMax Scaling -> Model Fitting -> Prediction). The model's stability and 90% accuracy were successfully restored, proving the effectiveness of the outlier removal step.
+### What I Built & Tested:
+1. **The Power of Big Data:** I scaled the dataset to 10,000 records. The accuracy immediately jumped to 90.0% using Logistic Regression. My Precision for Class 1 (Loan Approval) hit 85%.
+2. **The "GIGO" Experiment (Garbage In, Garbage Out):** To see what happens in the real world, I intentionally injected extreme outlier data (like a salary of 50 Lakhs and another at -2 Lakhs).
+3. **Visualizing the Mess:** I used Seaborn's `sns.boxplot`. The outliers completely distorted the scale, squashing the normal data into a tiny line.
 
+### Real Challenges Faced & My Solutions:
+* **Issue 1: Tiny Data & Model Confusion:** Initially, I ran my model on a very small dataset and got a weird `UndefinedMetricWarning` with only 50% accuracy.
+  * *My Logic & Solution:* I realized the test set (`y_test`) only had 2 rows! The model had no patterns to learn from. The solution was simple: build a large enough dataset (10k rows) so the 80-20 train-test split actually gives the model enough test cases to evaluate properly.
+* **Issue 2: The Data Overwrite Fear:** When I needed to remove the garbage data (outliers), I was confused. If I apply a filter on 'Salary', will it destroy my original data? Will the 'Age' and 'CIBIL' columns of the rejected customers get left behind?
+  * *My Logic & Solution:* I learned how row-level filtering works in Pandas. I applied the condition `(Salary > 0) & (Salary <= 200000)` and saved it to a completely *new* dataframe called `df_clean`. This safely removed the entire row of the bad customers without modifying or deleting my original `df`. 
+* **Issue 3: Proving the Fix:** After cleaning, would the model recover its accuracy?
+  * *My Logic & Solution:* I passed the new `df_clean` through my standard ML pipeline (Split -> Scale -> Fit -> Predict). The 90% accuracy was successfully restored! It proved that keeping outliers ruins the Logistic Regression calculation, and trimming them safely saves the model.
 
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
