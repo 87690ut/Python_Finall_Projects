@@ -119,12 +119,12 @@ Today's session was focused on making the data mathematically ready for the Logi
 ### Developer Thoughts:
 Connecting the entire pipeline—from cleaning to predicting—is challenging, but realizing how individual data points flow into the scaler and then into the model's prediction engine was a massive "aha" moment today.
 
-### Personal Breakthrough: The "Bypass" Logic for Future Data
-Aaj maine khud se ek real-world concept decode kiya. Mujhe samajh aaya ki agar future mein mere paas 100 naye customers ka data aata hai, toh machine ko wapas train (learn) karne ki zaroorat nahi hai. Main ek direct "bypass" banaunga:
-1. Naye data ko clean aur encode karunga.
-2. Purane scaler se data ko scale karunga (Yahan strictly sirf `.transform()` use hoga, galti se bhi `.fit()` nahi karna hai warna model ka base kharab ho jayega).
-3. Scale kiye hue data ko direct `model.predict()` mein pass kar dunga aur ek click mein 100 results mil jayenge.
-Model training aur real-time prediction ke beech ka ye difference samajhna meri aaj ki sabse badi win thi.
+### Personal Breakthrough: The "Bypass" Logic for Real-World Inference
+Today, I independently decoded how models are deployed in the real world. I realized that if I receive data for 100 new customers in the future, the machine does not need to be retrained. Instead, I will build a direct "bypass" pipeline:
+1. Clean and encode the new data.
+2. Scale the data using the previously saved scaler. (Strictly using only `.transform()` here; using `.fit()` is a major mistake that will destroy the model's mathematical baseline).
+3. Pass this scaled data directly into `model.predict()` to generate 100 results instantly.
+Understanding the strict boundary between the one-time model training phase and the continuous real-time prediction phase was my biggest win of the day.
 
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
