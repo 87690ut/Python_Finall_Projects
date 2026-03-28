@@ -105,6 +105,20 @@ Today was a major step up! I moved from playing with tiny 6-row toy datasets to 
 * **Issue 3: Proving the Fix:** After cleaning, would the model recover its accuracy?
   * *My Logic & Solution:* I passed the new `df_clean` through my standard ML pipeline (Split -> Scale -> Fit -> Predict). The 90% accuracy was successfully restored! It proved that keeping outliers ruins the Logistic Regression calculation, and trimming them safely saves the model.
 
+# Day 7: Handling Missing Data, Encoding Texts & Real-time Predictions
+
+### Project: Bank Loan Approval System
+Today's session was focused on making the data mathematically ready for the Logistic Regression model. Real-world data is never perfect—it has missing fields and text characters that algorithms cannot process.
+
+### Key Learnings & Execution:
+* **Imputation (Handling Missing Data):** Encountered rows with 'NaN' (Not a Number) in the 'Age' and 'Salary' columns. Instead of dropping these rows and losing valuable data, I used the `.fillna()` method combined with the `.median()` value to smartly replace the missing spaces without skewing the distribution.
+* **One-Hot Encoding (Translating Text to Math):** The dataset contained categorical text features like 'Gender' and 'Education'. Since Logistic Regression strictly requires numerical input, I utilized `pd.get_dummies()`. This successfully converted categories like 'BCA' and 'BTech' into binary columns (0s and 1s). I also applied the `drop_first=True` argument to avoid the dummy variable trap and keep the dataset optimized.
+* **Restoring Logical Patterns:** Recognized that random data yields a 50% accuracy (random guessing by the model). I reintroduced a strict business logic `np.where((Salary > 40000) & (CIBIL_Score > 650), 1, 0)` to create a realistic target variable, which instantly boosted the model's accuracy to 89.1% with a healthy confusion matrix.
+* **Real-time Inference (The "Bypass" Concept):** Successfully built a prediction pipeline for a brand new, unseen customer. I learned how to pass a 2D array representing a new applicant, transform it using the previously fitted `MinMaxScaler`, and output a real-time 'Approved' or 'Rejected' decision.
+
+### Developer Thoughts:
+Connecting the entire pipeline—from cleaning to predicting—is challenging, but realizing how individual data points flow into the scaler and then into the model's prediction engine was a massive "aha" moment today.
+
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
 * **Model Building:** `scikit-learn` pipeline implementation.
