@@ -126,6 +126,33 @@ Today, I independently decoded how models are deployed in the real world. I real
 3. Pass this scaled data directly into `model.predict()` to generate 100 results instantly.
 Understanding the strict boundary between the one-time model training phase and the continuous real-time prediction phase was my biggest win of the day.
 
+# Day 8: Model Testing, Comparison & Hyperparameter Tuning
+
+### The Goal:
+To test and compare multiple machine learning algorithms (Classification and Regression) on a single, logically constructed dataset.
+
+### Execution & Discoveries:
+
+1. **The Baseline (Logistic Regression):**
+   * Processed dirty data (Imputation & One-Hot Encoding) and fed it to Logistic Regression.
+   * **Result:** Achieved a 91% accuracy. The math-based model performed well but struggled slightly with the strict 'If-Else' logic of the data.
+
+2. **The "If-Else" Master (Decision Tree):**
+   * Tested a Decision Tree Classifier *without* scaling the data (as trees do not require scaling).
+   * **Result:** Achieved **100% accuracy**. The tree perfectly reverse-engineered the conditional logic (`Experience > 3 & Score > 60`) used to create the target variable.
+
+3. **Controlling the Forest (Hyperparameter Tuning):**
+   * Tested Random Forest and proved that without constraints, it also hits 100%.
+   * **The Underfitting Experiment:** Intentionally restricted the model using `n_estimators=2` and `max_depth=1`. This restricted its learning capacity, forcing the accuracy to drop from 100% to **74%**. This proved that as a developer, I can control a model's learning depth.
+
+4. **The Regression Trap (Linear Regression):**
+   * Shifted from predicting '0/1' to predicting a continuous number.
+   * **Initial Failure:** Attempted to predict a completely randomized 'Interview_Score'. The model returned a **negative R-squared score (-0.08)**, proving that algorithms cannot find patterns where none exist. (Garbage In, Garbage Out).
+   * **The Fix:** Created a logical `Expected_Salary` column based on `Experience_Years` using a mathematical formula. Linear Regression easily detected this pattern, immediately jumping to a **100% R-squared score** with zero mean squared error.
+
+### Developer Conclusion:
+Today solidified my understanding that the choice of algorithm heavily depends on the data's underlying pattern (Math equations vs. Conditional logic). Furthermore, no algorithm can overcome completely randomized, pattern-less data.
+
 ## 🛠️ Key Skills Demonstrated
 * **Data Processing:** `train_test_split`, feature mapping.
 * **Model Building:** `scikit-learn` pipeline implementation.
