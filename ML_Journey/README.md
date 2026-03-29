@@ -180,8 +180,12 @@ To evaluate and compare the performance of Classification (Logistic Regression, 
 ## 🛠️ Key Skills Demonstrated
 
 * **Data Preprocessing:** Handled missing values (Median Imputation), implemented One-Hot Encoding for categorical text (`pd.get_dummies`), and applied Feature Scaling (`MinMaxScaler`).
+
 * **Model Building & Comparison:** Successfully built, evaluated, and compared multiple `scikit-learn` algorithms including `LogisticRegression`, `DecisionTreeClassifier`, `RandomForestClassifier`, and `LinearRegression`.
+
 * **Advanced Model Tuning:** Applied Hyperparameter Tuning (e.g., `n_estimators`, `max_depth`) to manually control model complexity, prevent overfitting, and understand the concept of underfitting.
+
 * **Evaluation Metrics Mastery:** * *Classification:* Accuracy Score, Confusion Matrix, Classification Report (Precision/Recall).
     * *Regression:* R-squared ($R^2$) Score, Mean Squared Error (MSE).
+    
 * **Data Visualization:** Utilized `matplotlib` and `seaborn` (Heatmaps) to visually interpret model predictions and confusion matrices.
