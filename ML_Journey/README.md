@@ -216,3 +216,6 @@ After training the Logistic Regression model on the SMOTE-balanced logical data:
     * *Regression:* R-squared ($R^2$) Score, Mean Squared Error (MSE).
     
 * **Data Visualization:** Utilized `matplotlib` and `seaborn` (Heatmaps) to visually interpret model predictions and confusion matrices.
+
+* **Imbalanced Data Handling:** Successfully applied **SMOTE** (Synthetic Minority Over-sampling) on training data to fix severe class imbalance and prevent model bias.
+* **Business-Centric Evaluation:** Shifted evaluation focus from standard Accuracy to **Recall (Sensitivity)** to completely eliminate False Negatives in anomaly detection.
