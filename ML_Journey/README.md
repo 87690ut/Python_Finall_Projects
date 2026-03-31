@@ -220,7 +220,7 @@ To build a truly reliable evaluation system, we shifted from manual splitting to
 ## 🚨 Mistakes Made & Corrections Applied
 * **Mistake 1 (Pipeline Confusion):** Initially thought we needed to manually split the data (`X_train`, `X_test`) *before* applying K-Fold. 
   * **Correction:** Learned that K-Fold algorithms inherently handle the splitting process. We must pass the *entire* dataset (`X` and `y`) into the `cross_val` functions to let them create the folds dynamically.
-* **Mistake 2 (Terminology & Concepts):** Confusing model predictions with original answers (funny voice-typing moment: calling the target `y` the "wife protection answer" instead of the actual test data!).
+
   * **Correction:** Solidified the core concept: `y` is the inviolable 'Answer Key' (Reality), and `y_pred_cv` is the model's 'Answer Sheet' (Prediction). The Confusion Matrix strictly compares these two.
 
 ## 🧠 Core Technical Learnings
