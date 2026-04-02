@@ -262,3 +262,7 @@ The overall accuracy dropped to **84.25%**, which is actually a massive success.
 
 * **Imbalanced Data Handling:** Successfully applied **SMOTE** (Synthetic Minority Over-sampling) on training data to fix severe class imbalance and prevent model bias.
 * **Business-Centric Evaluation:** Shifted evaluation focus from standard Accuracy to **Recall (Sensitivity)** to completely eliminate False Negatives in anomaly detection.
+
+* **Automated ML Pipelines:** Designed and deployed leak-proof workflows using `imblearn.pipeline.Pipeline` to seamlessly integrate oversampling (SMOTE) and Model Training.
+* **Data Leakage Prevention:** Strictly isolated test folds during K-Fold Cross-Validation to prevent synthetic data bleed, ensuring 100% authentic evaluation metrics.
+* **Business-Centric Model Evaluation:** Analyzed Binary Confusion Matrices to prioritize 'Recall' (catching False Negatives/Frauds) over pure accuracy, directly aligning ML outcomes with real-world financial risk management.
