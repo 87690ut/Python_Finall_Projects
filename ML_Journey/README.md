@@ -227,25 +227,42 @@ To build a truly reliable evaluation system, we shifted from manual splitting to
 1. **Model Stability > Single High Score:** An average score of 97% over 5 folds is mathematically much more reliable for business stakeholders than a lucky 100% on a single split.
 2. **Multi-Class Error Analysis:** By analyzing the 3x3 Heatmap, I discovered that the model perfectly identified Class 0 (Setosa) because its features are distinct. However, the 2.67% error rate exclusively happened between Class 1 (Versicolor) and Class 2 (Virginica) because their real-world features heavily overlap. Models are math engines, and overlapping data naturally causes statistical confusion.
 
-# 🚀 Day 11: End-to-End Real-World Pipeline (Imbalanced Data & Leakage Prevention)
+# 🚀 End-to-End ML Architecture: Bank Fraud Detection & Imbalanced Data Handling
 
-## 📌 Evolution: Previous vs. Current Approach
-* **Previous Days:** Worked with clean, perfectly balanced datasets (like Iris) to understand base concepts like K-Fold Cross-Validation. We applied manual steps for scaling and evaluation.
-* **Today's Challenge:** Transitioned to messy, real-world Bank Default Data. The data was highly imbalanced (95% Safe, 5% Fraud) and contained missing values. We needed a robust, automated system to handle this without mathematical errors.
+## 📌 Project Objective
+To build a highly robust Logistic Regression model capable of detecting bank frauds in a severely imbalanced dataset (95% Safe vs. 5% Fraud), while strictly preventing Data Leakage during the synthetic sampling process.
 
-## 🚨 The Core Problem & Solution
-* **The Problem (Data Leakage Trap):** If we apply SMOTE (to balance the 5% frauds) on the entire dataset *before* Cross-Validation, the "fake/synthetic" data points leak into the test folds. This results in cheating and gives a deceptively high, fake accuracy score.
-* **The Solution (The Pipeline):** Implemented `imblearn.pipeline.Pipeline`. We locked our scaling, SMOTE, and Logistic Regression model inside this pipeline. The pipeline intelligently ensures that SMOTE is *only* applied to the training folds during cross-validation, keeping the test folds 100% authentic and leak-proof.
+## ⚠️ The Pitfall: The "Manual SMOTE" Illusion (Day 1)
+Initially, I explored the traditional approach of manually applying SMOTE to the entire dataset to balance the classes. 
+* **The Fatal Flaw:** Applying SMOTE before splitting or cross-validation causes "synthetic" data points to bleed into the validation/test sets. 
+* **The Result:** The model artificially memorizes the fake data (Data Leakage), leading to a deceptively high accuracy (e.g., 99%) that catastrophically fails in real-world scenarios.
 
-## ⚙️ Impact on Data, Processes, and Pipelines
-* **Automation:** Replaced manual, error-prone step-by-step execution with a single, automated pipeline block.
-* **Scalability:** The pipeline structure allows us to easily add more preprocessing steps (like imputation or PCA) in the future without breaking the code.
-* **Integrity:** Guarantees that our final evaluation metrics are strictly based on unseen, real-world data distributions.
+## 🛠️ The Pro Solution: Automated Leak-Proof Pipelines (Day 2)
+To build an industry-standard model, I discarded the manual approach and engineered an automated workflow using `imblearn.pipeline.Pipeline`. 
 
-## 💼 Business Impact & The "84.25%" Reality
-The overall accuracy dropped to **84.25%**, which is actually a massive success. 
-* **Old Apathetic Model:** Would give 95% accuracy by simply calling everyone "Safe" but would catch 0 frauds.
-* **New Pipeline Model:** Successfully caught 33 out of 44 actual frauds (True Positives). While it falsely flagged 115 safe customers (False Positives), from a banking perspective, the cost of annoying a few genuine customers is far lower than letting frauds escape with bank funds. The model prioritized **Recall** over pure accuracy, aligning perfectly with business goals.
+**The Pipeline Architecture:**
+1. **Data Preprocessing:** Imputed missing values and applied Data Scaling (`MinMaxScaler`) to ensure uniform feature weightage.
+2. **Train-Test Isolate:** Locked away 20% of the data as a pure, untouched 'Holdout Test Set'.
+3. **The Pipeline Engine:** Embedded SMOTE and the Logistic Regression model directly into the pipeline. This ensured that synthetic data was generated *only* on the training folds during cross-validation, keeping the test sets 100% authentic.
+
+## 📊 Dual-Phase Evaluation Strategy
+
+### Phase 1: Quality Control (K-Fold Pre-Board)
+* Passed the pipeline through a strict 5-Fold Cross-Validation strictly on the 80% training data.
+* **Score:** Reached a stable **84.25%**. This confirmed the model was learning genuine patterns without overfitting, giving the green light for the final test.
+
+### Phase 2: The Final Holdout Test (Real-World Simulation)
+* Fitted the pipeline on the complete 80% training set and deployed it on the untouched 20% Test Data.
+* **Score:** **87.5% Accuracy**
+* **Business Impact (Confusion Matrix Analysis):**
+  * **True Positives (10/11 Frauds Caught):** The model achieved a massive **~90% Recall**. 
+  * **False Positives (24):** Flagged 24 safe customers for extra manual verification.
+  * **Business Verdict:** The model successfully prioritized 'Recall' over pure 'Accuracy'. From a banking perspective, absorbing the operational cost of verifying 24 genuine customers is an overwhelming win compared to the financial devastation of letting 10 frauds escape. 
+
+## 💡 Key Skills Demonstrated
+* **Architecture:** Building end-to-end Machine Learning Pipelines (`imblearn`).
+* **Risk Management:** Mitigating Data Leakage in imbalanced datasets.
+* **Business Alignment:** Translating technical metrics (Confusion Matrix/Recall) into actionable financial risk management strategies.
 
 ## 🛠️ Key Skills Demonstrated
 
