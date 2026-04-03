@@ -227,7 +227,7 @@ To build a truly reliable evaluation system, we shifted from manual splitting to
 1. **Model Stability > Single High Score:** An average score of 97% over 5 folds is mathematically much more reliable for business stakeholders than a lucky 100% on a single split.
 2. **Multi-Class Error Analysis:** By analyzing the 3x3 Heatmap, I discovered that the model perfectly identified Class 0 (Setosa) because its features are distinct. However, the 2.67% error rate exclusively happened between Class 1 (Versicolor) and Class 2 (Virginica) because their real-world features heavily overlap. Models are math engines, and overlapping data naturally causes statistical confusion.
 
-# 🚀 End-to-End ML Architecture: Bank Fraud Detection & Imbalanced Data Handling
+# 🚀Day 11: End-to-End ML Architecture: Bank Fraud Detection & Imbalanced Data Handling
 
 ## 📌 Project Objective
 To build a highly robust Logistic Regression model capable of detecting bank frauds in a severely imbalanced dataset (95% Safe vs. 5% Fraud), while strictly preventing Data Leakage during the synthetic sampling process.
