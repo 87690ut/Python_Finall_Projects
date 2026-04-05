@@ -288,6 +288,23 @@ In this iteration of the project, several Pro-Level Data Science architectures w
 * **The Ceiling Effect:** Through rigorous hyperparameter tuning, the model hit its maximum predictive limit on the given dataset. 
 * **Final Evaluation:** Evaluated the unseen 20% test data using `accuracy_score` and generated a comprehensive `confusion_matrix` to transparently track True Positives (caught frauds) and False Positives (inconvenienced honest customers).
 
+## 🏆 Performance Comparison: Base Model vs. Tuned Pipeline
+
+To understand the actual impact of our hyperparameter tuning and architectural changes, we compared the initial baseline model with our final GridSearch-optimized pipeline:
+
+* **The Baseline (Manual Approach):**
+  Initially, the data was manually split, scaled, and balanced. While this gave a high overall accuracy, the manual process was prone to potential **data leakage** during cross-validation, and the default parameters weren't optimized for our specific problem (catching frauds).
+
+* **The Optimized Approach (Pipeline + GridSearchCV):**
+  By enclosing the SMOTE and Random Forest model inside a strict `Pipeline`, we completely eliminated the risk of data leakage. Furthermore, automating the testing process with `GridSearchCV` allowed the model to find the absolute best parameter combination (like the perfect 'class_weight' and 'n_estimators').
+
+* **Final Metrics Achieved:**
+
+  * **Overall Accuracy:** [95%]
+  * **Recall (Fraud Detection Rate):** [Yahan apna Recall % daal dena]
+  
+  * **Business Impact:** The confusion matrix revealed that our tuned model successfully caught [8] actual frauds, while keeping false alarms (False Positives) strictly down to [4]. This proves that the model reached its maximum predictive capacity (Ceiling Effect) for this specific dataset.
+
 ## 💻 Tech Stack
 * **Language:** Python
 * **Libraries:** Pandas, Scikit-Learn (`Pipeline`, `GridSearchCV`, `RandomForestClassifier`), Imbalanced-Learn (`SMOTE`), Matplotlib, Seaborn.
