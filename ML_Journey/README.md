@@ -264,7 +264,7 @@ To build an industry-standard model, I discarded the manual approach and enginee
 * **Risk Management:** Mitigating Data Leakage in imbalanced datasets.
 * **Business Alignment:** Translating technical metrics (Confusion Matrix/Recall) into actionable financial risk management strategies.
 
-# 🚀 Bank Fraud Detection: Random Forest & Hyperparameter Tuning
+# 🚀Day 12: Bank Fraud Detection: Random Forest & Hyperparameter Tuning
 
 ## 📌 Project Overview
 This project focuses on building a robust Machine Learning pipeline to detect fraudulent bank transactions. Transitioning from basic classification models, this phase implements an advanced ensemble learning technique (**Random Forest**) combined with automated hyperparameter tuning (**GridSearchCV**) to maximize fraud detection capabilities (Recall).
