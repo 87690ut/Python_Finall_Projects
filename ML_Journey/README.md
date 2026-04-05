@@ -264,6 +264,34 @@ To build an industry-standard model, I discarded the manual approach and enginee
 * **Risk Management:** Mitigating Data Leakage in imbalanced datasets.
 * **Business Alignment:** Translating technical metrics (Confusion Matrix/Recall) into actionable financial risk management strategies.
 
+# 🚀 Bank Fraud Detection: Random Forest & Hyperparameter Tuning
+
+## 📌 Project Overview
+This project focuses on building a robust Machine Learning pipeline to detect fraudulent bank transactions. Transitioning from basic classification models, this phase implements an advanced ensemble learning technique (**Random Forest**) combined with automated hyperparameter tuning (**GridSearchCV**) to maximize fraud detection capabilities (Recall).
+
+## 🧠 Key Learnings & New Implementations
+In this iteration of the project, several Pro-Level Data Science architectures were introduced:
+* **The Pipeline Architecture:** Created a unified `Pipeline` to seamlessly bundle `SMOTE` (for handling imbalanced data) and the `RandomForestClassifier`. This prevents data leakage during cross-validation.
+* **Automated Hyperparameter Tuning:** Replaced manual guesswork with `GridSearchCV` to automatically test multiple combinations of parameters (e.g., `n_estimators`, `class_weight`) and identify the absolute best model configuration.
+* **K-Fold Cross-Validation:** Integrated `cv=5` within GridSearch to rigorously test the model's reliability across 5 different subsets of the data.
+
+## 🚧 Challenges Faced & Solutions
+1. **The Double Underscore Trap (`__`):**
+   * *Issue:* Encountered invalid parameter errors when passing the parameter grid to the Pipeline.
+   * *Solution:* Learned the strict Scikit-Learn syntax rule of using a double underscore (`model__n_estimators`) to link GridSearch parameters to the specific step inside the Pipeline.
+2. **Redundant Model Fitting:**
+   * *Issue:* Attempted to apply `.fit()` manually on the newly extracted best pipeline.
+   * *Solution:* Discovered the power of the hidden `refit=True` default parameter in `GridSearchCV`. Understood that the extracted `best_estimator_` is already 100% trained and ready for `.predict()` on the test locker data, saving computation time.
+
+## 📊 Model Impact & Results
+* **Feature Importance:** Extracted the internal logic (Secret Diary) of the Random Forest model using `feature_importances_`. Successfully mapped the raw scores to actual column names and visualized them using a Seaborn Barplot to show the bank exactly which customer details pose the highest risk.
+* **The Ceiling Effect:** Through rigorous hyperparameter tuning, the model hit its maximum predictive limit on the given dataset. 
+* **Final Evaluation:** Evaluated the unseen 20% test data using `accuracy_score` and generated a comprehensive `confusion_matrix` to transparently track True Positives (caught frauds) and False Positives (inconvenienced honest customers).
+
+## 💻 Tech Stack
+* **Language:** Python
+* **Libraries:** Pandas, Scikit-Learn (`Pipeline`, `GridSearchCV`, `RandomForestClassifier`), Imbalanced-Learn (`SMOTE`), Matplotlib, Seaborn.
+
 ## 🛠️ Key Skills Demonstrated
 
 * **Data Preprocessing:** Handled missing values (Median Imputation), implemented One-Hot Encoding for categorical text (`pd.get_dummies`), and applied Feature Scaling (`MinMaxScaler`).
